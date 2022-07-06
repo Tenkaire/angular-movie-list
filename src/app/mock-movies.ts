@@ -1,0 +1,37 @@
+import { Movie } from "./movie";
+
+export const MOVIES: Movie[] = [
+    { id: 12, name: 'Doctor Strange in the Multiverse of Madness', genre: 'Action', image: "https://images2.imgbox.com/40/da/DjQ6YKax_o.jpeg", 
+    contentRating: 4,  actorRating: 4, directorRating: 5, topicRating: 3},
+    { id: 13, name: 'Spider-Man: No Way Home', genre: 'Sci-Fi', image: "https://images2.imgbox.com/65/29/r1vrP52A_o.jpeg", 
+    contentRating: 3,  actorRating: 4, directorRating: 4, topicRating: 2},
+    { id: 14, name: 'Eternals', genre: 'Horror', image: "https://images2.imgbox.com/7f/63/V28CkjC9_o.jpeg", 
+    contentRating: 4,  actorRating: 3, directorRating: 3, topicRating: 5},
+    { id: 15, name: 'Shang-Chi and the Legend of the Ten Rings', genre: 'Adventure', image: "https://images2.imgbox.com/16/52/kdAwnwVQ_o.jpeg", 
+    contentRating: 2,  actorRating: 2, directorRating: 3, topicRating: 1},
+    { id: 16, name: 'Captain Marvel', genre: 'Comedy', image: "https://images2.imgbox.com/14/2a/59LqxlZ4_o.jpeg", 
+    contentRating: 5,  actorRating: 1, directorRating: 0, topicRating: 4},
+    { id: 17, name: 'Avengers: Endgame', genre: 'Horror', image: "https://images2.imgbox.com/4d/4d/goaIGCTT_o.jpeg", 
+    contentRating: 1,  actorRating: 0, directorRating: 2, topicRating: 0},
+    { id: 18, name: 'Ant-Man and The Wasp', genre: 'Romantic', image: "https://images2.imgbox.com/dc/52/CjxWP24f_o.jpeg", 
+    contentRating: 4,  actorRating: 5, directorRating: 1, topicRating: 3},
+    { id: 19, name: 'Avengers: Infinity War', genre: 'Documentary', image: "https://images2.imgbox.com/58/37/YOSTJ0F0_o.jpeg", 
+    contentRating: 0,  actorRating: 5, directorRating: 5, topicRating: 2},
+    { id: 20, name: 'Black Panther', genre: 'Horror', image: "https://images2.imgbox.com/7e/a6/GRiRlJ81_o.jpeg", 
+    contentRating: 4,  actorRating: 2, directorRating: 4, topicRating: 4},
+    { id: 21, name: 'Thor: Ragnarok', genre: 'Horror', image: "https://images2.imgbox.com/66/d6/wF5WXcMD_o.jpeg", 
+    contentRating: 4,  actorRating: 3, directorRating: 3, topicRating: 5},
+    { id: 22, name: 'Doctor Strange', genre: 'Adventure', image: "https://images2.imgbox.com/1c/54/g47CkRhC_o.jpeg", 
+    contentRating: 2,  actorRating: 2, directorRating: 3, topicRating: 1},
+    { id: 23, name: 'Guardians of the Galaxy Vol. 2', genre: 'Comedy', image: "https://images2.imgbox.com/6c/10/4veT8cf0_o.jpg", 
+    contentRating: 5,  actorRating: 1, directorRating: 0, topicRating: 4},
+    { id: 24, name: 'Captain America: Civil War', genre: 'Horror', image: "https://images2.imgbox.com/6d/71/MSZv5Q8R_o.jpeg", 
+    contentRating: 1,  actorRating: 0, directorRating: 2, topicRating: 0},
+    { id: 25, name: 'Ant-Man', genre: 'Romantic', image: "https://images2.imgbox.com/d5/5c/g5rhT9cX_o.jpeg", 
+    contentRating: 4,  actorRating: 5, directorRating: 1, topicRating: 3},
+    { id: 26, name: 'Guardians of the Galaxy', genre: 'Documentary', image: "https://images2.imgbox.com/db/c5/mChAzXQL_o.jpeg", 
+    contentRating: 0,  actorRating: 5, directorRating: 5, topicRating: 2},
+    { id: 27, name: 'Thor', genre: 'Horror', image: "https://images2.imgbox.com/28/93/128CYrhJ_o.jpeg", 
+    contentRating: 4,  actorRating: 2, directorRating: 4, topicRating: 4}
+];
+

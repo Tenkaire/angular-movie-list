@@ -1,0 +1,74 @@
+<div *ngIf="movie" class="detail-container">
+  <div class="main-row">
+    <div class="column">
+      <img [src]="movie.image"><br>
+    </div>
+    <div class="column">
+      <label for="movie-name">Movie name: </label>
+      <div id="movie-name">{{ movie.name }}</div> <br>
+      <label for="movie-genre">Movie genre: </label>
+      <div id="movie-genre">{{ movie.genre }}</div><br>
+      <label for="movie-rating">Movie Ratings: </label>
+      <div class="row" style="display: flex; justify-content: space-between;">
+        <div style="width: 40%;">Content based:</div>
+        <div class="col-sm-12" >        
+          <ul class="list-inline rating-list" 
+              *ngFor="let star of stars" style="display: inline-block" >
+                <li [ngClass]="{'selected': (star <= movie.contentRating)}">
+                  <i class="fa fa-star"></i>
+                </li> 
+          </ul>
+        </div>
+      </div>  
+      <div class="row" style="display: flex; justify-content: space-between;">
+        <div style="width: 40%;">Actor based: </div>
+        <div class="col-sm-12" >        
+          <ul class="list-inline rating-list" 
+              *ngFor="let star of stars" style="display: inline-block" >
+                <li [ngClass]="{'selected': (star <= movie.actorRating)}">
+                  <i class="fa fa-star"></i>
+                </li> 
+          </ul>
+        </div>
+      </div> 
+      <div class="row" style="display: flex; justify-content: space-between;">
+        <div style="width: 40%;">Director based: </div>
+        <div class="col-sm-12" >
+          <ul class="list-inline rating-list" 
+              *ngFor="let star of stars" style="display: inline-block" >
+                <li [ngClass]="{'selected': (star <= movie.directorRating)}">
+                  <i class="fa fa-star"></i>
+                </li> 
+          </ul>
+        </div>
+      </div> 
+      <div class="row" style="display: flex; justify-content: space-between;">
+        <div style="width: 40%;">Topic based: </div>
+        <div class="col-sm-12" >
+          <ul class="list-inline rating-list" 
+              *ngFor="let star of stars" style="display: inline-block" >
+                <li [ngClass]="{'selected': (star <= movie.topicRating)}">
+                  <i class="fa fa-star"></i>
+                </li> 
+          </ul>
+        </div>
+      </div> 
+      <hr>
+      <div class="row" style="display: flex; justify-content: space-between;">
+        <div style="width: 40%;">Overall: </div>
+        <div class="col-sm-12" >
+          <ul class="list-inline rating-list" 
+              *ngFor="let star of stars" style="display: inline-block" >
+                <li [ngClass]="{'selected': (star <= getAverageRating())}">
+                  <i class="fa fa-star"></i>
+                </li> 
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; position: absolute; left:40%">
+    <button class="form-button" type="button" (click)="goBack()">go back</button>
+    <button class="form-button" type="button" routerLink="/detail/{{movie.id}}/edit">edit</button>
+  </div>
+</div>

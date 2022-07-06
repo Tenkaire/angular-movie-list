@@ -1,0 +1,16 @@
+<div id="search-component">
+    <label for="search-box">Movie Search</label>
+    <div style="display: flex; justify-content: flex-start;" >
+      <input #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="Search for a movie in the list..."/>
+      <button class="search-btn" type="submit" (click)="reloadComponent()"><i class="fa fa-search"></i></button>
+    </div>
+    <ul class="search-result">
+      <form>
+        <li *ngFor="let movie of movies$ | async" >
+          <a routerLink="/detail/{{movie.id}}" (click)="resetValue(); searchBox.value = null;">
+            {{movie.name}}
+          </a>
+        </li>
+      </form>      
+    </ul>
+</div>

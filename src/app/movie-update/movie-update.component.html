@@ -1,0 +1,72 @@
+<div *ngIf="movie" class="detail-container">
+  <div class="main-row">
+    <div class="column">
+      <img [src]="movie.image"><br>
+    </div>
+    <div class="column">
+      <div><span>Movie ID: </span>{{movie.id}}</div>
+      <label for="movie-name">Movie name: </label>
+      <input id="movie-name" required [(ngModel)]="movie.name" placeholder="movie name"> <br>
+      <label for="movie-genre">Movie genre: </label>
+      <select id="movie-genre" required [(ngModel)]="movie.genre" placeholder="movie genre">
+        <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+      </select><br>
+      <br>
+      <label for="movie-rating">Movie Ratings: </label>
+      <br>
+      <br>
+      <div class="row" style="display: flex; justify-content: space-between;">
+        <div style="width: 40%;">Content based:</div>
+        <div class="col-sm-12" >        
+          <ul class="list-inline rating-list" 
+              *ngFor="let star of stars" style="display: inline-block" >
+                <li (click)="countContentStar(star)"
+                [ngClass]="{'selected': (star <= movie.contentRating)}">
+                  <i class="fa fa-star"></i>
+                </li> 
+          </ul>
+        </div>
+      </div>  
+      <div class="row" style="display: flex; justify-content: space-between;">
+        <div style="width: 40%;">Actor based: </div>
+        <div class="col-sm-12" >        
+          <ul class="list-inline rating-list" 
+              *ngFor="let star of stars" style="display: inline-block" >
+                <li (click)="countActorStar(star)"
+                [ngClass]="{'selected': (star <= movie.actorRating)}">
+                  <i class="fa fa-star"></i>
+                </li> 
+          </ul>
+        </div>
+      </div> 
+      <div class="row" style="display: flex; justify-content: space-between;">
+        <div style="width: 40%;">Director based: </div>
+        <div class="col-sm-12" >
+          <ul class="list-inline rating-list" 
+              *ngFor="let star of stars" style="display: inline-block" >
+                <li (click)="countDirectorStar(star)"
+                [ngClass]="{'selected': (star <= movie.directorRating)}">
+                  <i class="fa fa-star"></i>
+                </li> 
+          </ul>
+        </div>
+      </div> 
+      <div class="row" style="display: flex; justify-content: space-between;">
+        <div style="width: 40%;">Topic based: </div>
+        <div class="col-sm-12" >
+          <ul class="list-inline rating-list" 
+              *ngFor="let star of stars" style="display: inline-block" >
+                <li (click)="countTopicStar(star)"
+                [ngClass]="{'selected': (star <= movie.topicRating)}">
+                  <i class="fa fa-star"></i>
+                </li> 
+          </ul>
+        </div>
+      </div> 
+    </div>
+  </div>
+  <div style="display: flex; position: absolute; left:40%">
+    <button class="button" type="button" (click)="goBack()">go back</button>
+    <button class="button" type="button" (click)="save()">save</button>
+  </div>  
+</div>

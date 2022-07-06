@@ -1,0 +1,201 @@
+<ng-container *ngIf="display$ | async as display" class="add-container" >
+  <section [class.open]="display === 'open'"
+           (click)="onClose()">
+    <div (click)="$event.stopPropagation()">
+      <button class="close" type="button" (click)="onClose()"><i style="font-size:24px" class="fa">&#xf00d;</i></button>
+      <div class="container">
+        <div [hidden]="submitted">
+          <h1>Movie Form</h1>
+          <form (ngSubmit)="onSubmit()" #movieForm="ngForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name"
+                      required [(ngModel)]="model.name" name="name" #movieName="ngModel">
+              <div [hidden]="movieName.valid || movieName.pristine" class="alert alert-danger">
+                <i class="fa fa-exclamation-triangle"></i> Movie name is required
+              </div>
+            </div>
+      
+            <div class="form-group">
+              <label for="genre">Genre</label>
+              <select class="form-control" id="genre"
+                      required
+                      [(ngModel)]="model.genre" name="genre"
+                      #genre="ngModel">
+                <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+              </select>
+              <div [hidden]="genre.valid || genre.pristine" class="alert alert-danger">
+                <i class="fa fa-exclamation-triangle"></i> Genre is required
+              </div>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="image">Upload Image</label>
+                <div class="form-image-preview">
+                    <IMG [src]="shortLink" class="image-preview" height="200">
+                </div>
+                <div class="text-center">
+                    <input class="form-group" id="image" 
+                      required #image type="file" (change)="onFileSelected($event)" accept=".png,.jpg">    
+                </div>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="rating">Ratings</label>
+                <br>
+                <div class="row" style="display: flex; justify-content: space-between;">
+                  <div id="movie-rating" style="width: 20%;">Content based</div>
+                  <div class="col-sm-12">
+                      <ul class="list-inline rating-list" 
+                          *ngFor="let star of stars" style="display: inline-block" >
+                            <li (click)="countContentStar(star)"
+                                [ngClass]="{'selected': (star <= model.contentRating)}">
+                              <i class="fa fa-star"></i>
+                            </li> 
+                      </ul>
+                  </div>
+                </div>
+                
+                <div class="row" style="display: flex; justify-content: space-between;">
+                  <div id="movie-rating" style="width: 20%;">Actor Based</div>
+                  <div class="col-sm-12">
+                      <ul class="list-inline rating-list" 
+                          *ngFor="let star of stars" style="display: inline-block" >
+                            <li (click)="countActorStar(star)"
+                                [ngClass]="{'selected': (star <= model.actorRating)}">
+                              <i class="fa fa-star"></i>
+                            </li> 
+                      </ul>
+                  </div>
+                </div>
+                
+                <div class="row" style="display: flex; justify-content: space-between;">
+                  <div id="movie-rating" style="width: 20%;">Director Based</div>
+                  <div class="col-sm-12">
+                      <ul class="list-inline rating-list" 
+                          *ngFor="let star of stars" style="display: inline-block" >
+                            <li (click)="countDirectorStar(star)"
+                                [ngClass]="{'selected': (star <= model.directorRating)}">
+                              <i class="fa fa-star"></i>
+                            </li> 
+                      </ul>
+                  </div>
+                </div>
+
+                <div class="row" style="display: flex; justify-content: space-between;">
+                  <div id="movie-rating" style="width: 20%;">Topic Based</div>
+                  <div class="col-sm-12">
+                      <ul class="list-inline rating-list" 
+                          *ngFor="let star of stars" style="display: inline-block" >
+                            <li (click)="countTopicStar(star)"
+                                [ngClass]="{'selected': (star <= model.topicRating)}">
+                              <i class="fa fa-star"></i>
+                            </li> 
+                      </ul>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="button-container" style="display: flex;">
+              <button  class="btn" (click)="onClose()">Close</button>
+              <button type="submit" class="btn btn-success" [disabled]="!movieForm.form.valid || !imageUploaded || !isRatingValid">Submit</button>
+            </div>
+    
+          </form>
+        </div>  
+        
+        <div class="confirm-page" [hidden]="!submitted">
+          <h2>The new movie details are the following:</h2>
+          <div class="main-row" >
+            <div class="column">
+              <img class="col-xs-6 updated-image" [src]="shortLink">
+            </div>
+            <div class="column">
+              <div class="row" style="display: flex; justify-content: space-between;">
+                <label for="movie-name">Movie ID: </label>
+                <div id="movie-name">{{ model.id }}</div> 
+              </div>
+              <br>
+              <div class="row" style="display: flex; justify-content: space-between;">
+                <label for="movie-name">Movie name: </label>
+                <div id="movie-name">{{ model.name }}</div> 
+              </div>
+              <br>
+              <div class="row" style="display: flex; justify-content: space-between;">
+                <label for="movie-genre">Movie genre: </label>
+                <div id="movie-genre">{{ model.genre }}</div>
+              </div>
+            </div>                   
+          </div>
+          <br>
+
+          <div class="row" style="display: flex; justify-content: space-between;">
+            <div style="width: 40%;">Content based:</div>
+            <div class="col-sm-12" >        
+              <ul class="list-inline updated-rating-list" 
+                  *ngFor="let star of stars" style="display: inline-block" >
+                    <li [ngClass]="{'selected': (star <= model.contentRating)}">
+                      <i class="fa fa-star"></i>
+                    </li> 
+              </ul>
+            </div>
+          </div>  
+          <div class="row" style="display: flex; justify-content: space-between;">
+            <div style="width: 40%;">Actor based: </div>
+            <div class="col-sm-12" >        
+              <ul class="list-inline updated-rating-list" 
+                  *ngFor="let star of stars" style="display: inline-block" >
+                    <li [ngClass]="{'selected': (star <= model.actorRating)}">
+                      <i class="fa fa-star"></i>
+                    </li> 
+              </ul>
+            </div>
+          </div> 
+          <div class="row" style="display: flex; justify-content: space-between;">
+            <div style="width: 40%;">Director based: </div>
+            <div class="col-sm-12" >
+              <ul class="list-inline updated-rating-list" 
+                  *ngFor="let star of stars" style="display: inline-block" >
+                    <li [ngClass]="{'selected': (star <= model.directorRating)}">
+                      <i class="fa fa-star"></i>
+                    </li> 
+              </ul>
+            </div>
+          </div> 
+          <div class="row" style="display: flex; justify-content: space-between;">
+            <div style="width: 40%;">Topic based: </div>
+            <div class="col-sm-12" >
+              <ul class="list-inline updated-rating-list" 
+                  *ngFor="let star of stars" style="display: inline-block" >
+                    <li [ngClass]="{'selected': (star <= model.topicRating)}">
+                      <i class="fa fa-star"></i>
+                    </li> 
+              </ul>
+            </div>
+          </div> 
+          <hr>
+          <div class="row" style="display: flex; justify-content: space-between;">
+            <div style="width: 40%;">Overall: </div>
+            <div class="col-sm-12" >
+              <ul class="list-inline updated-rating-list" 
+                  *ngFor="let star of stars" style="display: inline-block" >
+                    <li [ngClass]="{'selected': (star <= getAverageRating())}">
+                      <i class="fa fa-star"></i>
+                    </li> 
+              </ul>
+            </div>
+          </div>
+          <br>
+          <div class="button-container" style="display: flex;">
+            <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
+            <button type="button" class="btn btn-primary" 
+                    (click)="onConfirm(model.id, model.name, model.genre, shortLink, 
+                    model.contentRating, model.actorRating, model.directorRating, model.topicRating);">Confirm</button>
+          </div>     
+        </div>
+      </div>        
+    </div>
+  </section>
+</ng-container>

@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="filter-container">
+  <label for="genre">Search movies by genre: </label>
+  <select class="genre-selector" id="genre" name="genre" 
+    [(ngModel)] = "selectedGenre" (ngModelChange)="SearchGenre()" >
+    <option>All</option>
+    <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+  </select>
+</div>
+
+<div class="table-wrapper">
+  <table class="fl-table">
+      <thead>
+      <tr>
+          <th (click)="sortID()">Movie ID <i class="fa fa-sort"></i></th>
+          <th>Poster Thumbnail</th>
+          <th (click)="sortMovieName()">Movie Name <i class="fa fa-sort"></i></th>
+          <th>Movie Genre</th>
+          <th>Movie Rating by 
+            <select class="movie-rating-drop-down" id="ratings" name="ratings" 
+            [(ngModel)] = "selectedRating">
+              <option *ngFor="let rating of ratings; let i = index" value="{{i}}">{{rating}}</option>
+            </select>
+          </th>
+          <th>Status</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let movie of movies | paginate: {itemsPerPage: 10, currentPage: page}">
+        <tr>
+            <td>{{movie.id}}</td>
+            <td>
+              <img [src]="movie.image" height="40"><br>
+            </td>
+            <td>{{movie.name}}</td>
+            <td>{{movie.genre}}</td>
+            <td>
+              <div class="row">
+                <div class="col-sm-12" *ngIf="selectedRating == 0">
+                    <ul class="list-inline rating-list" 
+                        *ngFor="let star of stars" style="display: inline-block">
+                          <li [ngClass]="{'selected': (star <= getAverage(movie.contentRating,movie.actorRating,movie.directorRating,movie.topicRating))}">
+                            <i class="fa fa-star"></i>
+                          </li> 
+                    </ul>
+                </div>
+                <div class="col-sm-12" *ngIf="selectedRating == 1">
+                  <ul class="list-inline rating-list" 
+                      *ngFor="let star of stars" style="display: inline-block">
+                        <li [ngClass]="{'selected': (star <= movie.contentRating)}">
+                          <i class="fa fa-star"></i>
+                        </li> 
+                  </ul>
+                </div>
+                <div class="col-sm-12" *ngIf="selectedRating == 2">
+                  <ul class="list-inline rating-list" 
+                      *ngFor="let star of stars" style="display: inline-block">
+                        <li [ngClass]="{'selected': (star <= movie.actorRating)}">
+                          <i class="fa fa-star"></i>
+                        </li> 
+                  </ul>
+                </div>
+                <div class="col-sm-12" *ngIf="selectedRating == 3">
+                  <ul class="list-inline rating-list" 
+                      *ngFor="let star of stars" style="display: inline-block">
+                        <li [ngClass]="{'selected': (star <= movie.directorRating)}">
+                          <i class="fa fa-star"></i>
+                        </li> 
+                  </ul>
+                </div>
+                <div class="col-sm-12" *ngIf="selectedRating == 4">
+                  <ul class="list-inline rating-list" 
+                      *ngFor="let star of stars" style="display: inline-block">
+                        <li [ngClass]="{'selected': (star <= movie.topicRating)}">
+                          <i class="fa fa-star"></i>
+                        </li> 
+                  </ul>
+                </div>
+              </div>
+            </td>
+            <td>
+              <button class="bin" type="button" title="delete movie" (click)="delete(movie)" >
+                <i class="fas fa-trash"></i>
+              </button>
+              <button class="pen" type="button" title="update movie" routerLink="/detail/{{movie.id}}/edit">
+                <i class='fas fa-pencil-alt'></i>
+              </button>
+            </td>
+        </tr>
+      <tbody>
+  </table>
+  <div class="pagination">
+    <pagination-controls  (pageChange)="page = $event" ></pagination-controls>
+  </div> 
+</div>

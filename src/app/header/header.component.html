@@ -1,0 +1,12 @@
+<div class="fixed-header">
+    <h1> {{ title }}</h1>   
+    <nav>
+        <button class="home-btn" routerLink="/dashboard"> <i class="fa fa-home"></i> Home</button>
+        <button class="home-btn" routerLink="/movies"><i class="fa fa-bars"></i> Movies</button>
+        <button class="home-btn" routerLink="/about-me"><i class="fa fa-user"></i> About Me</button>
+    </nav>
+    <app-movie-search></app-movie-search>
+    <br>
+    <br>
+    <button class="new-movie" mat-button (click)="openDialog()"><i class="fa fa-plus" style="font-size:20px"></i>  New Movie</button>
+</div>

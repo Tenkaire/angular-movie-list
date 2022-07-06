@@ -1,0 +1,18 @@
+<h2>Movie List</h2>
+<div class="carousel-container">
+  <div class="inner-carousel">
+    <mat-card class="track" *ngFor="let movie of mediator">
+      <div class="card-container" routerLink="/detail/{{movie.id}}">
+        <IMG class="card" [src]='movie.image'>
+        <mat-card-content style="display: flex; justify-content: space-between;">
+          <p style="text-overflow: ellipsis; overflow: hidden;"><strong>{{movie.name}}</strong></p>
+          <p style="float:right;">{{movie.genre}} </p>
+        </mat-card-content>  
+      </div>         
+    </mat-card>
+    <div class="nav">
+      <button class="prev" (click)="leftClick()" ><i class="fas fa-arrow-left fa-2x"></i></button>
+      <button class="next" (click)="rightClick()" ><i class="fas fa-arrow-right fa-2x"></i> </button>
+    </div>
+  </div>
+</div>
