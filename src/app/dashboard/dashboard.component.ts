@@ -14,14 +14,14 @@ export class DashboardComponent implements OnInit {
   movies: Movie[] = MOVIES;
 
   private startIndex = 0;
-  private lastIndex = 3;
+  private lastIndex = 4;
   
 
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
     this.getMovies();
-    this.mediator = [this.movies[0], this.movies[1], this.movies[2], this.movies[3]];
+    this.mediator = [this.movies[0], this.movies[1], this.movies[2], this.movies[3], this.movies[4]];
   }
 
   getMovies(): void {

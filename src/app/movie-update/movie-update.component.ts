@@ -15,7 +15,6 @@ export class MovieUpdateComponent implements OnInit {
 
   @Input() movie? : Movie;
   genres = ['Action', 'Horror', 'Sci-Fi', 'Comedy', 'Romantic', 'Adventure', 'Documentary'];
-  selectedValue: number;
   stars: number[] = [1, 2, 3, 4, 5];
   
   constructor(private route: ActivatedRoute, private movieService: MovieService, private location: Location) {
@@ -23,11 +22,10 @@ export class MovieUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovie();
-    this.selectedValue = 0;
   }
 
   getMovie(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    const id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
     this.movieService.getMovie(id).subscribe(movie => this.movie = movie);
   }
 

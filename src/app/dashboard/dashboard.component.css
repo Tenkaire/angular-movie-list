@@ -54,11 +54,12 @@ img {
 }
 
 .carousel-container {
-  width: 80%;
+  width: 100%;
   margin: 50px auto;
   position: relative;
   border-left-width: 4px;
   border-left-color: #aaa;
+  overflow-x: hidden;
 }
 
 @media (max-width: 768px) {
@@ -68,9 +69,10 @@ img {
 }
 
 .inner-carousel {
-  width: 100%;
+  width: 120%;
   height: 380px;
   overflow: hidden;
+  padding-left: 2%;
 }
 
 .track {
@@ -116,9 +118,9 @@ img {
 }
 
 .nav .prev {
-  left: -10px;
+  left: 5%;
 }
 
 .nav .next {
-  right: -10px;
+  right: 5%;
 }

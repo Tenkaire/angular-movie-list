@@ -36,8 +36,7 @@ export class MovieFormComponent implements OnInit, OnDestroy {
 
   constructor(private modalService: ModalService, 
               private matDialogRef: MatDialogRef<MovieFormComponent>,   
-              private movieService: MovieService,
-              @Inject(MAT_DIALOG_DATA) public movie: string) { }
+              private movieService: MovieService) { }
 
   ngOnInit(): void {
     this.model = new Movie(Math.floor(Math.random() * 1000), '', '', '', 0, 0, 0, 0);

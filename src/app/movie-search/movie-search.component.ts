@@ -39,7 +39,7 @@ export class MovieSearchComponent implements OnInit {
 
   ngOnInit(): void { 
     this.movies$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
+      // wait 200ms after each keystroke before considering the term
       debounceTime(200),
       // // ignore new term if same as previous term
       distinctUntilChanged(),

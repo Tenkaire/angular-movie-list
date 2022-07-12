@@ -5,7 +5,6 @@ import { MOVIES } from './mock-movies';
 
 import { Observable, of } from 'rxjs';
 
-import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -17,7 +16,7 @@ export class MovieService {
 
   private moviesUrl = 'api/movies';  // URL to web api
 
-  constructor(private http: HttpClient, private messageService: MessageService) { }
+  constructor(private http: HttpClient) { }
 
 
   /** GET heroes from the server */
@@ -67,7 +66,7 @@ export class MovieService {
   }
 
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    console.log(`HeroService: ${message}`);
   }
 
   httpOptions = {
