@@ -7,5 +7,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Public Gallery
 
-I use imgbox to keep all the assets' images. Go to `https://imgbox.com/gallery/edit/he6nNoBnwO/uAleb9FBW6zFoFcc` for more details. 
+I used imgbox to keep all the assets' images. Go to `https://imgbox.com/gallery/edit/he6nNoBnwO/uAleb9FBW6zFoFcc` for more details. 
 
